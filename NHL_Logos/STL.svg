@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_3"
+   x="0px"
+   y="0px"
+   width="300"
+   height="300"
+   viewBox="0 0 300 299.99999"
+   enable-background="new 0 0 250 214"
+   xml:space="preserve"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="STL.svg"><metadata
+   id="metadata17"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+   id="defs15"><filter
+     id="filter2986"
+     inkscape:label="Desaturate"
+     x="0"
+     y="0"
+     width="1"
+     height="1"
+     inkscape:menu="Color"
+     inkscape:menu-tooltip="Render in shades of gray by reducing saturation to zero"
+     color-interpolation-filters="sRGB"><feColorMatrix
+       id="feColorMatrix2988"
+       type="saturate"
+       values="0" /></filter><filter
+     id="filter2990"
+     inkscape:label="Desaturate"
+     x="0"
+     y="0"
+     width="1"
+     height="1"
+     inkscape:menu="Color"
+     inkscape:menu-tooltip="Render in shades of gray by reducing saturation to zero"
+     color-interpolation-filters="sRGB"><feColorMatrix
+       id="feColorMatrix2992"
+       type="saturate"
+       values="0" /></filter><filter
+     id="filter2994"
+     inkscape:label="Desaturate"
+     x="0"
+     y="0"
+     width="1"
+     height="1"
+     inkscape:menu="Color"
+     inkscape:menu-tooltip="Render in shades of gray by reducing saturation to zero"
+     color-interpolation-filters="sRGB"><feColorMatrix
+       id="feColorMatrix2996"
+       type="saturate"
+       values="0" /></filter><filter
+     id="filter2998"
+     inkscape:label="Desaturate"
+     x="0"
+     y="0"
+     width="1"
+     height="1"
+     inkscape:menu="Color"
+     inkscape:menu-tooltip="Render in shades of gray by reducing saturation to zero"
+     color-interpolation-filters="sRGB"><feColorMatrix
+       id="feColorMatrix3000"
+       type="saturate"
+       values="0" /></filter></defs><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1366"
+   inkscape:window-height="744"
+   id="namedview13"
+   showgrid="false"
+   fit-margin-top="0"
+   fit-margin-left="0"
+   fit-margin-right="0"
+   fit-margin-bottom="0"
+   inkscape:zoom="1.5595999"
+   inkscape:cx="280.43025"
+   inkscape:cy="132.59795"
+   inkscape:window-x="0"
+   inkscape:window-y="24"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_3" />
+<g
+   id="STL"
+   transform="matrix(1.25,0,0,1.25,-6.1140667,17.700923)">
+	<path
+   style="fill:#000000;filter:url(#filter2998)"
+   d="m 0,0 72.1875,117.34375 c -0.917,-0.031 -1.82375,-0.0312 -2.71875,-0.0312 -13.668,0 -26.44075,3.48775 -35.96875,9.84375 -11.171,7.452 -16.84375,16.80125 -16.84375,27.78125 0,10.58 6.01325,20.4225 16.90625,27.6875 9.463,6.312 22.20825,9.78125 35.90625,9.78125 13.328,0 26.01775,-3.55725 35.71875,-10.03125 10.83,-7.227 16.8125,-16.97125 16.8125,-27.40625 0,-4.72 -1.2495,-9.27675 -3.9375,-14.34375 l -0.125,-0.21875 -16.875,-26.9063 c 3.256,0.543 6.48475,0.59375 8.84375,0.59375 4.656,0 8.50525,-0.718 8.65625,-0.75 1.3,-0.273 4.96875,-1.09375 4.96875,-1.09375 l -4.71875,-6.84375 c 1.766,0.123 11.203,0.5863 19.5,0.0312 5.795,-0.387 11.031,-1.7005 12.75,-2.1875 1.501,-0.425 5.9375,-2.03125 5.9375,-2.03125 l -6.03125,-6 c 6.51,-0.104 13.203,-1.6755 22,-5.6875 14.357,-6.547002 22.527,-15.98275 25.5,-19.84375 l -1.5625,0 c 2.225,-1.253 4.77725,-2.91725 6.90625,-4.65625 4.115,-3.36 7.10775,-6.74125 9.34375,-10.28125 0.911,-1.444 1.8285,-2.893 2.4375,-4.125 0.859,-1.739 1.25,-3.03125 1.25,-3.03125 l -1.6875,0 c 1.278,-1.058 5.304,-4.75025 8.125,-9.90625 1.313,-2.398 2.3715,-5.1445 3.0625,-7.3125 0.665,-2.087 0.96875,-3.65625 0.96875,-3.65625 l -2.625,0 C 227.5415,24.7208 232.008,20.381 235.375,14.125 237.007,11.092 238.253,7.77625 239,5.03125 239.768,2.20125 240,0 240,0 L 42.28125,0 c 0,0 9.21625,13.78775 11.90625,20.84375 0.102,0.243 0.13875,0.5835 0.21875,0.8125 0.576,1.655 0.57325,3.20625 0.15625,3.78125 -0.986,1.362 -2.6325,1.974 -6.5625,1.875 L 30.84375,0 0,0 z m 14.1875,7.9375 12.28125,0 16.96875,26.875 c 0,0 32.958,4.249 13,-26.875 l 172.5625,0 c -3.178,9.59 -17.49275,18.98925 -24.59375,23.15625 l -137.90625,0 1.4375,2.25 142.3125,0 5.78125,0 c -1.572,6.794 -15.812,14.78075 -23.375,18.59375 l -113.03125,0 1.4375,2.25 118.21875,0 3.59375,0 c -5.249,8.942 -21.40875,14.46 -32.21875,17.25 l -79.25,0 1.4375,2.25 86.3125,0 3.65625,0 c -16.799,17.473 -49.59375,13.96875 -49.59375,13.96875 L 141.875,97 c -11.86,1.743 -38.28125,-0.65625 -38.28125,-0.65625 1.814,4.067 6.15625,9.6875 6.15625,9.6875 -7.896,0.36 -25.8125,-5.71875 -25.8125,-5.71875 l 27.09375,44.03125 c 1.802,3.395 3.03125,6.799 3.03125,10.625 0,16.433 -19.96375,29.75 -44.59375,29.75 -24.598,0 -44.5625,-13.316 -44.5625,-29.75 0,-16.407 19.9645,-29.71875 44.5625,-29.71875 6.329,0 12.6245,0.8765 18.0625,2.4375 L 14.1875,7.9375 z"
+   transform="translate(5,10.799998)"
+/>
+</g>
+</svg>
