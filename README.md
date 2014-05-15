@@ -30,8 +30,10 @@ This only needs to be done once, unless the kindle runs out of power. I keep min
 
 To view all the logos, I included a process-svg.sh script which will pre-process the logos (included in the DisplayTeams templates) and add them to the server. Then just run "display-logos.sh" on the kindle side.
 
-*Disclaimers*
+**Disclaimers**
 I'm sure there are plenty of better ways of doing all of this. I would actually love to know them (I don't have a formal programming background).
+
+Right now it behaves a little screwy in between playoff rounds (like when the next oponent hasn't been determined yet)
 
 The web scraping is dependent on NHL.com's current HTML structure. This may need to be updated for later seasons.
 
