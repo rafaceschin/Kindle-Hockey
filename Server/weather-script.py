@@ -69,8 +69,9 @@ def get_next_info(table):
         sched_rows = table.find_all('td')[0:4]
         next_date = sched_rows[0].get_text().encode('ascii').split(' ')[0:3]
         next_date_str = next_date[0] + ' ' + next_date[1] + ' ' + next_date[2][:-1] 
-        next_away_str = sched_rows[1].get_text().encode('ascii')
-        next_home_str = sched_rows[2].get_text().encode('ascii')
+        next_away_str = sched_rows[1].get_text().encode('ascii','ignore')
+        next_home_str = sched_rows[2].get_text().encode('ascii','ignore')
+        print next_home_str
         next_time = sched_rows[3].get_text().encode('ascii').split(' ')[0:2]
         next_time_str= next_time[0] + ' ' + next_time[1]
         return next_date_str,next_away_str, next_home_str, next_time_str
@@ -83,8 +84,8 @@ def get_past_info(table):
         past_rows = table.find_all('td')[-6:-1]
         past_date = past_rows[0].get_text().encode('ascii').split(' ')[0:3]
         past_date_str= past_date[0] + ' ' + past_date[1] + ' ' + past_date[2][:-1]
-        past_away_str = past_rows[1].get_text().encode('ascii')
-        past_home_str = past_rows[2].get_text().encode('ascii')
+        past_away_str = past_rows[1].get_text().encode('ascii','ignore')
+        past_home_str = past_rows[2].get_text().encode('ascii','ignore')
         past_score = past_rows[4].get_text().encode('ascii').split('\n')
         past_score_str= str(past_score[2] + past_score[3] +
                             past_score[4] + ' ' + past_score[5])
@@ -187,16 +188,16 @@ output = output.replace('DAY_TWO',days_of_week[(day_one + one_day).weekday()])
 
 
 # Insert Hockey INFO
-output = output.replace('N_DATE', NEXT_DATE)
-output = output.replace('N_TIME', NEXT_TIME)
-output = output.replace('P_DATE', PAST_DATE)
-output = output.replace('P_SCORE', PAST_SCORE)
-output = output.replace('AWAY_REC', AWAY_REC)
-output = output.replace('HOME_REC', HOME_REC)
-output = output.replace('N_AWAY', NEXT_AWAY)
-output = output.replace('N_HOME', NEXT_HOME)
-output = output.replace('P_AWAY', PAST_AWAY)
-output = output.replace('P_HOME', PAST_HOME)
+output = output.replace('N_DATE', str(NEXT_DATE))
+output = output.replace('N_TIME', str(NEXT_TIME))
+output = output.replace('P_DATE', str(PAST_DATE))
+output = output.replace('P_SCORE', str(PAST_SCORE))
+output = output.replace('AWAY_REC', str(AWAY_REC))
+output = output.replace('HOME_REC', str(HOME_REC))
+output = output.replace('N_AWAY', str(NEXT_AWAY))
+output = output.replace('N_HOME', str(NEXT_HOME))
+output = output.replace('P_AWAY', str(PAST_AWAY))
+output = output.replace('P_HOME', str(PAST_HOME))
 
 # Write output
 codecs.open('weather-script-output.svg', 'w', encoding='utf-8').write(output)
