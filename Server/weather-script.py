@@ -14,8 +14,7 @@ import re
 
 #CHANGE TEAM AND SEASON INFO HERE:
 
-Team='PIT'
-Season='20142015'
+TEAM='pit'
 
 #
 # Download and parse weather data
@@ -51,116 +50,96 @@ day_one = datetime.datetime.strptime(xml_day_one, '%Y-%m-%d')
 
 # Get Hockey info
 
-def get_sched(Team, Game_Type, Season):
-    try:
-        game_type = str(Game_Type)
-        search_url =str('http://www.nhl.com/ice/schedulebyseason.htm?season='
-                     +Season+'&gameType='+game_type+'&team='+Team)
-
-        html = urlopen(search_url)
-        soup = BeautifulSoup(html, "lxml")
-        return soup.findAll('table', {'class':'data schedTbl'})
-    except IndexError:
-        return 0
-
-
-def get_next_info(table):
-    try:
-        sched_rows = table.find_all('td')[0:4]
-        next_date = sched_rows[0].get_text().encode('ascii').split(' ')[0:3]
-        next_date_str = next_date[0] + ' ' + next_date[1] + ' ' + next_date[2][:-1] 
-        next_away_str = sched_rows[1].get_text().encode('ascii','ignore')
-        next_home_str = sched_rows[2].get_text().encode('ascii','ignore')
-        print next_home_str
-        next_time = sched_rows[3].get_text().encode('ascii').split(' ')[0:2]
-        next_time_str= next_time[0] + ' ' + next_time[1]
-        return next_date_str,next_away_str, next_home_str, next_time_str
-    except IndexError:
-        return 0,0,0,0
-
-
-def get_past_info(table):
-    try:
-        past_rows = table.find_all('td')[-6:-1]
-        past_date = past_rows[0].get_text().encode('ascii').split(' ')[0:3]
-        past_date_str= past_date[0] + ' ' + past_date[1] + ' ' + past_date[2][:-1]
-        past_away_str = past_rows[1].get_text().encode('ascii','ignore')
-        past_home_str = past_rows[2].get_text().encode('ascii','ignore')
-        past_score = past_rows[4].get_text().encode('ascii').split('\n')
-        past_score_str= str(past_score[2] + past_score[3] +
-                            past_score[4] + ' ' + past_score[5])
-        return past_date_str, past_away_str, past_home_str,past_score_str
-    except IndexError:
-        return 0,0,0,0
-
-pre_season = get_sched(Team, 1, Season)
-reg_season = get_sched(Team, 2, Season)
-post_season = get_sched(Team, 3, Season)
 
 #This will give screwy results at the end of the season, but at that point
 # You will be too depressed/happy to mind
-if pre_season == 0:
-    PAST_DATE = ':('
-    PAST_AWAY = 'Pittsburgh'
-    PAST_HOME = 'Pittsburgh_alt'
-    PAST_SCORE = 'Waiting on Schedule'
-    NEXT_DATE = ':('
-    NEXT_AWAY = 'Pittsburgh_alt'
-    NEXT_HOME = 'Pittsburgh'
-    NEXT_TIME = 'SUMMER' 
 
-elif len(pre_season) == 2: #mid pre season
-    NEXT_DATE, NEXT_AWAY, NEXT_HOME, NEXT_TIME = get_next_info(pre_season[0])
-    PAST_DATE, PAST_AWAY, PAST_HOME, PAST_SCORE = get_past_info(pre_season[1])
+def get_team_name(href):
+    m = re.search('(?<=team/_/name/).*', href)
+    return m.group(0)[:3]
 
-elif len(reg_season) == 2: #mid season
-    NEXT_DATE, NEXT_AWAY, NEXT_HOME, NEXT_TIME = get_next_info(reg_season[0])
-    PAST_DATE, PAST_AWAY, PAST_HOME, PAST_SCORE = get_past_info(reg_season[1])
-
-elif len(post_season) == 2: #mid post season
-    NEXT_DATE, NEXT_AWAY, NEXT_HOME, NEXT_TIME = get_next_info(post_season[0])
-    PAST_DATE, PAST_AWAY, PAST_HOME, PAST_SCORE = get_past_info(post_season[1])
-
-elif len(pre_season) == 1 and len(post_season)==0 : #pre-season to reg season
-    NEXT_DATE, NEXT_AWAY, NEXT_HOME, NEXT_TIME = get_next_info(reg_season[0])
-    PAST_DATE, PAST_AWAY, PAST_HOME, PAST_SCORE = get_past_info(pre_season[0])
-
-elif len(reg_season) == 1 and len(post_season)==1 : #reg season to post season (or in-between rounds)
-    NEXT_DATE, NEXT_AWAY, NEXT_HOME, NEXT_TIME = get_next_info(post_season[0])
-    PAST_DATE, PAST_AWAY, PAST_HOME, PAST_SCORE = get_past_info(reg_season[0])
-
-else:
-    PAST_DATE = ':('
-    PAST_AWAY = 'Pittsburgh'
-    PAST_HOME = 'Pittsburgh_alt'
-    PAST_SCORE = 'Waiting on Schedule'
-    NEXT_DATE = ':('
-    NEXT_AWAY = 'Pittsburgh_alt'
-    NEXT_HOME = 'Pittsburgh'
-    NEXT_TIME = 'SUMMER'
+def get_team_record(text):
+    record = text.split('(')
+    team_record = record[1].split(')')[0]
+    return team_record
 
 
-
-record_search=str('http://www.nhl.com/ice/standings.htm?season='
-        +Season+'&type=LEA')
-html = urlopen(record_search)
-soup = BeautifulSoup(html, "lxml")
-table = soup.findAll('table', {'class':'data standings League'})
-
-def get_record(team, table):
+def get_info(Team, header):
+    status = 0 ## status is the state that the site is currently displaying
+               ## the next game. 1 == ongoing, 2 == preview
+    if header == 'previous':
+        tag = 'mod-container mod-game prev'
+    else:
+        tag = 'mod-container mod-no-footer mod-game current'
     try:
-        rec_name = table[0].find('a', text=re.compile(team))
-        win = rec_name.find_next().find_next().find_next()
-        loss = win.find_next()
-        ot = loss.find_next()
-        return str(win.text.encode('ascii') + '-' +
-                      loss.text.encode('ascii') + '-' +
-                      ot.text.encode('ascii'))
-    except AttributeError:
-        return "0 - 0 - 0"
+        search_url = str('http://espn.go.com/nhl/team/_/name/'+Team)
+        html = urlopen(search_url)
+        soup = BeautifulSoup(html, "lxml")
+        results = soup.find_all('div', {'class': tag})
+        if len(results) >= 1:
+            result = results
+            status = 1
+        else:
+            result = soup.find_all('div',
+                 {'class': 'mod-container mod-no-footer mod-game current pre'})
+            status = 2
 
-HOME_REC= get_record(NEXT_HOME, table)
-AWAY_REC= get_record(NEXT_AWAY, table)
+        return result, status
+
+    except IndexError:
+        return 0
+
+def get_previous(Team):
+    table = get_info(Team, 'previous')[0]
+    try:
+        info = table[0]
+        other_team = get_team_name(info.find('a')['href'])
+        home_away = info.find_all('div',{'class':'home-away'})
+        if home_away[0].get_text() == u'@':
+            away = Team
+            home = other_team
+        else:
+            home = Team
+            away = other_team
+
+        results = info.find_all('div',{'class':'results'})
+        result_text = results[0].get_text().encode('ascii','ignore')
+        date = info.get_text()[:9]
+        return home, away, date, result_text
+    except IndexError:
+        return 'pit_alt', 'pit', ':('
+
+def get_next(Team):
+    table, status = get_info(Team, 'current')
+    try:
+        info = table[0]
+        home = info.find_all('div',{'class':'team-home'})
+        home_team = get_team_name(home[0].find('a')['href'])
+        home_record_text = home[0].find('div', {'class':'record'}).get_text()
+        home_record = get_team_record(home_record_text)
+
+        away = info.find_all('div',{'class':'team-away'})
+        away_team = get_team_name(away[0].find('a')['href'])
+        away_record = away[0].find('div', {'class':'record'}).get_text()
+        away_record_text = away[0].find('div', {'class':'record'}).get_text()
+        away_record = get_team_record(away_record_text)
+
+
+        date = info.get_text()[0:10]
+        if status == 1:
+            time = info.find_all('div', {'class':'time'})[0].get_text()
+
+        elif status == 2:
+            time = info.get_text()[11:26]
+
+        return home_team, home_record, away_team, away_record, date, time
+
+    except IndexError:
+        return 'pit_alt', '0 - 0 - 0', 'pit', '0 - 0 - 0', ':(', ':('
+
+
+PAST_HOME, PAST_AWAY, PAST_DATE, PAST_SCORE = get_previous(TEAM)
+NEXT_HOME, HOME_REC, NEXT_AWAY, AWAY_REC, NEXT_DATE, NEXT_TIME = get_next(TEAM)
 
 
 #
