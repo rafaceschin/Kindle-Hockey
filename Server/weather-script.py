@@ -130,7 +130,7 @@ def get_next(Team):
             time = info.find_all('div', {'class':'time'})[0].get_text()
 
         elif status == 2:
-            time = info.get_text()[11:26]
+            time = info.get_text()[11:22]
 
         return home_team, home_record, away_team, away_record, date, time
 
