@@ -125,7 +125,7 @@ def get_next(Team):
         away_record = get_team_record(away_record_text)
 
 
-        date = info.get_text()[0:10]
+        date = info.get_text()[0:11]
         if status == 1:
             time = info.find_all('div', {'class':'time'})[0].get_text()
 
